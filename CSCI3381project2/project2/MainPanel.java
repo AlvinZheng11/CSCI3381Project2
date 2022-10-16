@@ -1,16 +1,16 @@
-package guiIntro;
+package project2;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
-public class PushCounter {
+public class MainPanel {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Push Counter");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		PushCounterPanel panel = new PushCounterPanel();
+		ControlPanel panel = new ControlPanel();
 		frame.getContentPane().add(panel);
 
 		frame.pack();

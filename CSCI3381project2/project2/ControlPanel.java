@@ -1,4 +1,4 @@
-package guiIntro;
+package project2;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -24,10 +24,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 
-public class PushCounterPanel extends JPanel{
+public class ControlPanel extends JPanel{
 	private int count;
-	private JButton push;
-	private JLabel lblPushes;
 	private JTextField movieTitle;
 	private JLabel lblNewLabel;
 	private Shows allData;
@@ -35,40 +33,20 @@ public class PushCounterPanel extends JPanel{
 	private JRadioButton rdbtnNewRadioButton;
 	private ImageIcon image;
 	private int x, y;
-	
-	public PushCounterPanel() {
+
+	public ControlPanel() {
 		allData = new Shows("allData","./project1/netflixAllWeeksGlobalProcessed.txt");
-		
+
 		//image = new ImageIcon (this.getClass().getResource("/Dog.gif"));
-		image = new ImageIcon (this.getClass().getResource("/Fatherhood.jpg"));
-		
+		//image = new ImageIcon (this.getClass().getResource("/Fatherhood.jpg"));
+
+		count = 1;
 		x = 475;
 		y = 150;
-		
-		count = 0;
-		push = new JButton ("Push Me!");
-		push.setBounds(68, 54, 105, 23);
-		push.addActionListener(new ButtonListener());
-		lblPushes = new JLabel ("Pushes: 0");
-		lblPushes.setBounds(214, 80, 105, 23);
-		lblPushes.setFont(new Font("Sitka Text", Font.PLAIN, 16));
-		setLayout(null);
 
-		add (push);
-		add(lblPushes);
+		setLayout(null);
 		setBackground(Color.LIGHT_GRAY);
 		setPreferredSize(new Dimension(800, 700));
-		
-		JButton btnClearCount = new JButton("Clear Count");
-		btnClearCount.setBounds(68, 101, 105, 23);
-		btnClearCount.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				count=0;
-				lblPushes.setText ("Pushes: " + count);
-			}
-
-		});
-		add(btnClearCount);
 
 		movieTitle = new JTextField("2021-07-04");
 		movieTitle.setBounds(68, 210, 149, 20);
@@ -122,39 +100,90 @@ public class PushCounterPanel extends JPanel{
 		});
 		btnNewButton.setBounds(68, 230, 89, 23);
 		add(btnNewButton);
-		
+
 		JButton btnNewButton_1 = new JButton("Do Edit!");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(rdbtnNewRadioButton.isSelected())
 				{
-					
+
 				}
 			}
 		});
 		btnNewButton_1.setBounds(128, 315, 89, 23);
 		add(btnNewButton_1);
-		
+
 		rdbtnNewRadioButton = new JRadioButton("Title");
 		rdbtnNewRadioButton.setSelected(true);
 		buttonGroup.add(rdbtnNewRadioButton);
 		rdbtnNewRadioButton.setBounds(13, 317, 109, 23);
 		add(rdbtnNewRadioButton);
-		
+
 		JRadioButton rdbtnWeek = new JRadioButton("Week");
 		buttonGroup.add(rdbtnWeek);
 		rdbtnWeek.setBounds(13, 392, 109, 23);
 		add(rdbtnWeek);
-		
+
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Purged");
 		buttonGroup.add(rdbtnNewRadioButton_1);
 		rdbtnNewRadioButton_1.setBounds(13, 355, 109, 23);
 		add(rdbtnNewRadioButton_1);
-		
+
 		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("English?");
 		buttonGroup.add(rdbtnNewRadioButton_3);
 		rdbtnNewRadioButton_3.setBounds(13, 431, 109, 23);
 		add(rdbtnNewRadioButton_3);
+
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 215, 187);
+		add(panel);
+
+		JButton btnNewButton_2 = new JButton("Prev");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				count--;
+				System.out.println(count);
+				if (count < 1)
+				{
+					count = 10;
+				}
+			}
+		});
+		btnNewButton_2.setBounds(523, 666, 89, 23);
+		add(btnNewButton_2);
+
+		JButton btnNewButton_3 = new JButton("Next");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				count++;
+				System.out.println(count);
+				if(count > 9)
+				{
+					count = 0;
+				}
+			}
+		});
+		btnNewButton_3.setBounds(667, 666, 89, 23);
+		add(btnNewButton_3);
+
+
+		if(count == 1)
+		{
+			image = new ImageIcon (this.getClass().getResource("/Fatherhood.jpg"));
+			repaint();
+		}	
+		if(count == 2)
+		{
+			image = new ImageIcon (this.getClass().getResource("/Fatherhood.jpg"));
+			repaint();
+		}
+		if(count == 3)
+		{
+			image = new ImageIcon (this.getClass().getResource("/Dog.gif"));
+			repaint();
+		}
+
+
 	}
 
 	public void doClose() {
@@ -165,12 +194,5 @@ public class PushCounterPanel extends JPanel{
 	{
 		super.paintComponent (page);
 		image.paintIcon (this, page, x, y);
-	}
-	
-	private class ButtonListener implements ActionListener {
-		public void actionPerformed (ActionEvent event){
-			count++;
-			lblPushes.setText ("Pushes: " + count);
-		}
 	}
 }
