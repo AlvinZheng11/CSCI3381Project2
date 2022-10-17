@@ -23,6 +23,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import javax.swing.JCheckBox;
 
 public class ControlPanel extends JPanel{
 	private int count;
@@ -139,10 +140,6 @@ public class ControlPanel extends JPanel{
 		rdbtnNewRadioButton_3.setBounds(13, 431, 109, 23);
 		add(rdbtnNewRadioButton_3);
 
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 215, 187);
-		add(panel);
-
 		//used for displaying movie posters
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setIcon(new ImageIcon("./Dog.gif"));
@@ -180,6 +177,15 @@ public class ControlPanel extends JPanel{
 		lblNewLabel_3.setBounds(496, 8, 225, 14);
 		add(lblNewLabel_3);
 		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Night Mode");
+		chckbxNewCheckBox.setSelected(true);
+		chckbxNewCheckBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		chckbxNewCheckBox.setBounds(13, 484, 93, 21);
+		add(chckbxNewCheckBox);
+		
 		
 
 
@@ -190,10 +196,4 @@ public class ControlPanel extends JPanel{
 	public void doClose() {
 		allData.doWrite("./textwrite.csv");
 	}
-
-//	public void paintComponent (Graphics page)
-//	{
-//		super.paintComponent (page);
-//		image.paintIcon (this, page, x, y);
-//	}
 }
