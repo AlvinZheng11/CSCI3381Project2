@@ -48,15 +48,18 @@ public class ControlPanel extends JPanel{
 		setBackground(Color.LIGHT_GRAY);
 		setPreferredSize(new Dimension(800, 700));
 
+		//set the combo box
 		movieTitle = new JTextField("2021-07-04");
 		movieTitle.setBounds(68, 210, 149, 20);
 		add(movieTitle);
 		movieTitle.setColumns(10);
 
+		//ask to enter week for combo box
 		lblNewLabel = new JLabel("Enter Week:");
 		lblNewLabel.setBounds(68, 198, 105, 14);
 		add(lblNewLabel);
 
+		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(227, 143, 215, 197);
 		add(scrollPane);
@@ -83,6 +86,7 @@ public class ControlPanel extends JPanel{
 		lblNewLabel_1.setBounds(68, 270, 46, 14);
 		add(lblNewLabel_1);
 
+		//gets shows based on week
 		JButton btnNewButton = new JButton("Get Shows");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -113,6 +117,7 @@ public class ControlPanel extends JPanel{
 		btnNewButton_1.setBounds(128, 315, 89, 23);
 		add(btnNewButton_1);
 
+		//Radio Buttons
 		rdbtnNewRadioButton = new JRadioButton("Title");
 		rdbtnNewRadioButton.setSelected(true);
 		buttonGroup.add(rdbtnNewRadioButton);
@@ -138,51 +143,47 @@ public class ControlPanel extends JPanel{
 		panel.setBounds(0, 0, 215, 187);
 		add(panel);
 
-		JButton btnNewButton_2 = new JButton("Prev");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				count--;
-				System.out.println(count);
-				if (count < 1)
-				{
-					count = 10;
-				}
-			}
-		});
-		btnNewButton_2.setBounds(523, 666, 89, 23);
-		add(btnNewButton_2);
-
+		//used for displaying movie posters
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon("./Dog.gif"));
+		lblNewLabel_2.setBounds(471, 33, 319, 494);
+		add(lblNewLabel_2);
+		
+		//Goes through images
 		JButton btnNewButton_3 = new JButton("Next");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				count++;
-				System.out.println(count);
+				
 				if(count > 9)
 				{
-					count = 0;
+					count = 1;
 				}
+				if(count == 1)
+				{
+					lblNewLabel_2.setIcon(new ImageIcon("./Fatherhood.jpg"));
+				}	
+				if(count == 2)
+				{
+					lblNewLabel_2.setIcon(new ImageIcon("./Fatherhood.jpg"));
+				}
+				if(count == 3)
+				{
+					lblNewLabel_2.setIcon(new ImageIcon("./Dog.gif"));
+				}
+				count++;
 			}
 		});
 		btnNewButton_3.setBounds(667, 666, 89, 23);
 		add(btnNewButton_3);
+		
+		JLabel lblNewLabel_3 = new JLabel("Recommended Movies:");
+		lblNewLabel_3.setBounds(496, 8, 225, 14);
+		add(lblNewLabel_3);
+		
+		
 
 
-		if(count == 1)
-		{
-			image = new ImageIcon (this.getClass().getResource("/Fatherhood.jpg"));
-			repaint();
-		}	
-		if(count == 2)
-		{
-			image = new ImageIcon (this.getClass().getResource("/Fatherhood.jpg"));
-			repaint();
-		}
-		if(count == 3)
-		{
-			image = new ImageIcon (this.getClass().getResource("/Dog.gif"));
-			repaint();
-		}
-
+		
 
 	}
 
@@ -190,9 +191,9 @@ public class ControlPanel extends JPanel{
 		allData.doWrite("./textwrite.csv");
 	}
 
-	public void paintComponent (Graphics page)
-	{
-		super.paintComponent (page);
-		image.paintIcon (this, page, x, y);
-	}
+//	public void paintComponent (Graphics page)
+//	{
+//		super.paintComponent (page);
+//		image.paintIcon (this, page, x, y);
+//	}
 }
