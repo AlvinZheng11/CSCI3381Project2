@@ -133,10 +133,16 @@ public class Shows {
 	public String toString() {
 		// returns a string representation of this showWeeks
 		String toReturn = "";
+		int count = 0;
 		for (ShowWeek s : showWeeks) {
 			if(purgeCheck(s.getShowTitle())== true)
 				continue;
 			toReturn += s.toString();
+			count++;
+			if(count >= 20) 
+			{
+				return toReturn;
+			}
 		}	
 		return toReturn;
 	}

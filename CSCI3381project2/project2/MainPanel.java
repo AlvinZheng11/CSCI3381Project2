@@ -1,3 +1,5 @@
+//Alvin Zheng
+//CSCI 3381 Java
 package project2;
 
 import java.awt.event.WindowAdapter;
